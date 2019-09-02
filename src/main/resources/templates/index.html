@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <title>Spring Security</title>
+</head>
+<body>
+<h1>欢迎使用Spring Security!当前登录账号：<label th:text="${name}"></label></h1>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="退出登录"/>
+</form>
+<p>点击 <a th:href="@{/hello}">这里</a> 打个招呼吧</p>
+
+<p sec:authorize="hasRole('ROLE_admin')"> <a th:href="@{/hello/helloAdmin}">admin page</a></p>
+<p sec:authorize="hasAnyRole('ROLE_admin','ROLE_normal')"><a th:href="@{/hello/helloUser}">user page</a>
+<p sec:authorize="hasAnyRole('ROLE_admin','ROLE_normal')"><a th:href="@{/findAllqy}">企业列表</a>
+    <a href="http://孙宇豪.online">首页</a>
+
+</body>
+</html>

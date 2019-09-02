@@ -1,0 +1,63 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>listall</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="main" class="wrap">
+    <div class="main">
+        <table class="table table-bordered table-striped" style="width: 1300px;margin: 0 auto;">
+            <thead>
+            <tr class="info">
+                <th>编号</th>
+                <th>企业唯一编码</th>
+                <th>地址</th>
+                <th>提交时间</th>
+                <th>公司企业状态</th>
+                <th>公司名称</th>
+                <th>社会信用码</th>
+                <th>法人名字</th>
+                <th>操作范围</th>
+                <th>注册金额</th>
+                <th>公司状态</th>
+                <th>是否收储</th>
+                <th>地区编码</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="list,listStat : ${lists}">
+                <td class="active" th:text="${list.id}">${list.id}</td>
+                <td class="success" th:text="${list.BBD_QYXX_ID}">${list.BBD_QYXX_ID}</td>
+                <td class="info" th:text="${list.ADDRESS}">${list.ADDRESS}</td>
+                <td class="warning" th:text="${list.APPROVAL_DATE}">${list.APPROVAL_DATE}</td>
+                <td class="bar-danger" th:text="${list.COMPANY_ENTERPRISE_STATUS}">${list.COMPANY_ENTERPRISE_STATUS}</td>
+                <td class="" th:text="${list.COMPANY_NAME}">${list.COMPANY_NAME}</td>
+                <td th:text="${list.CREDIT_CODE}">${list.CREDIT_CODE}</td>
+                <td th:text="${list.FRNAME}">${list.FRNAME}</td>
+                <td th:text="${list.OPERATE_SCOPE}">${list.OPERATE_SCOPE}</td>
+                <td th:text="${list.REGCAP}">${list.REGCAP}</td>
+                <td th:text="${list.COMPANY_TYPE}">${list.COMPANY_TYPE}</td>
+                <td th:text="${list.STOREUP}">${list.STOREUP}</td>
+                <td th:text="${list.AREACODE}">${list.AREACODE}</td>
+            </tr>
+            </th:forEach>
+
+            </tbody>
+        </table>
+    </div>
+    <div id="footer" align="center" style="width: 1300px;margin: 0 auto;">
+        Copyright &copy; 2013 孫宇豪 All Rights Reserved. 京ICP证1000001号
+    </div>
+</div>
+
+
+</body>
+</html>
