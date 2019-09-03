@@ -12,10 +12,10 @@
 </form>
 <p>点击 <a th:href="@{/hello}">这里</a> 打个招呼吧</p>
 
-<p sec:authorize="hasRole('ROLE_admin')"> <a th:href="@{/hello/helloAdmin}">admin page</a></p>
-<p sec:authorize="hasAnyRole('ROLE_admin','ROLE_normal')"><a th:href="@{/hello/helloUser}">user page</a>
-<p sec:authorize="hasAnyRole('ROLE_admin','ROLE_normal')"><a th:href="@{/findAllqy}">企业列表</a>
+<a th:href="@{/hello/helloAdmin}">admin page</a></p>
+<a th:href="@{/hello/helloUser}">user page</a>
+<a th:href="@{/findAllqy}">企业列表</a>
     <a href="http://孙宇豪.online">首页</a>
-
+    <a th:href="@{/findAllUser}">用户列表</a>
 </body>
 </html>
