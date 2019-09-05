@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>添加博客</title>
+    <link rel="stylesheet" href="/security/static/layui/css/layui.css" media="all" />
+    <script type="text/javascript" src="/security/static/layui/layui.js"></script>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script>
+        layui.use('upload', function(){
+            var $ = layui.jquery
+                ,upload = layui.upload;
+            var uploadurl="http://孙宇豪.online:8080/upload/upload/uploadImage";
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#uploadimg'
+                ,url: uploadurl
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#uploadimg').attr('src', result); //图片链接（base64）
+                    });
+                }
+                //请求接口成功
+                ,done: function(res){
+                    console.log(res);
+
+                    //如果上传失败
+                    if(res.errorCode < 0){
+                        //失败状态，并实现重传
+                        var demoText = $('#demoText');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            uploadInst.upload();
+                        });
+                        //返回失败原因
+                        return layer.msg(res.errorMessage);
+                    }
+
+                    //上传成功
+                    //向后台返回图片地址
+                    $('#articleImgUrl').attr('value', res.result);
+                    return layer.msg('上传成功');
+
+                }
+                //请求接口失败
+                ,error: function(){
+                    //失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>添加博客</h1>
+    <hr/>
+    <form th:action="@{/addBlog}" method="post" role="form">
+        <div class="form-group">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                <legend>标题</legend>
+            </fieldset>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title:"/>
+        </div>
+        <div class="form-group">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                <legend>作者</legend>
+            </fieldset>
+            <select  class="form-control" id="author" name="author">
+                <option th:each="user,userStat:${users}" th:value="${user.getUsername()}" th:text="${user.getUsername()}" ></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+            <legend>正文</legend>
+        </fieldset>
+            <textarea class="form-control" id="content" name="content" rows="3" placeholder="Please Input Content"></textarea>
+        </div>
+        <div class="form-group">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                <legend>图片上传</legend><button type="button" class="layui-btn" id="uploadimg2">选择</button>
+            </fieldset>
+            <div class="layui-upload">
+                <input type="hidden" id="articleImgUrl" name="articleImgUrl" >
+                <div class="layui-upload-list">
+                    <img class="layui-upload-img"  id="uploadimg" src="http://app.jin1.com.cn:9088/images/reallycare/logo.jpg">
+                    <p id=""></p>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-sm btn-success">提交</button>
+        </div>
+    </form>
+</div>
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

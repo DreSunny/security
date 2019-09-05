@@ -26,13 +26,13 @@
 
     <!-- 如果用户列表为空 -->
 
-    <div class="alert alert-warning" role="alert" th:if="${#strings.isEmpty(users)}">
+    <div class="alert alert-warning" role="alert" th:if="${#lists.isEmpty(users)}">
         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>User表为空，请<a th:href="@{/addUserPage}" type="button" class="btn btn-primary btn-sm">添加</a>
     </div>
 
 
     <!-- 如果用户列表非空 -->
-        <table class="table table-bordered table-striped" th:if="${not #strings.isEmpty(users)}">
+        <table class="table table-bordered table-striped" th:if="${not #lists.isEmpty(users)}">
             <tr>
                 <th>ID</th>
                 <th>姓名</th>
