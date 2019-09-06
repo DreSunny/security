@@ -69,6 +69,38 @@ public class BlogController {
         return "redirect:/findAllBlog";
     }
 
+    /**
+     * 修改博客页面
+     * */
+    @GetMapping("uploadBlogPage")
+    public String uploadBlogPage(Integer id,ModelMap modelMap){
+        BlogEntity blogById = blogService.findBlogById(id);
+        List<UserInfo> allUser = userInfoService.findAllUser();
+        modelMap.addAttribute("blog",blogById);
+        modelMap.addAttribute("users",allUser);
+        return "blog/uploadBlogPage";
+    }
+
+    /**
+     * 修改博客
+     * */
+    @PostMapping("uploadBlog")
+    public String uploadBlog(BlogEntity blogEntity){
+        blogEntity.setType("1");
+        blogService.save(blogEntity);
+        return "redirect:findAllBlog";
+    }
+
+    /**
+     * 删除博客
+     * */
+    @GetMapping("deleteBlog")
+    public String deleteBlog(Integer id){
+        blogService.deleteById(id);
+        return "redirect:findAllBlog";
+    }
+
+
 
 
 }
