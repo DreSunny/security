@@ -13,10 +13,6 @@ import java.util.List;
 @Entity
 public class UserInfo {
 
-//    public enum Role{
-//        admin,normal
-//    }
-
 
     @Id @GeneratedValue
     private long uid;//主键.
