@@ -48,6 +48,11 @@ public class HomeController {
         return "/index";
     }
 
+    @GetMapping("/blogIndex")
+    public String blogIndex(){
+        return "blog/index";
+    }
+
     /**
      * 获取验证码图片和文本(验证码文本会保存在HttpSession中)
      */
