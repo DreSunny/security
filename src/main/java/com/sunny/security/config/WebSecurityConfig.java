@@ -74,6 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.headers().frameOptions().disable();
         //定义需保护的URL
         http.authorizeRequests() // 定义哪些URL需要被保护、哪些不需要被保护
                 .antMatchers("/login").permitAll()//设置白名单 设置所有人都可以访问登录页面
@@ -91,6 +92,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().loginPage("/login")
                 .and().sessionManagement().maximumSessions(1)
+
         ;
 
 
