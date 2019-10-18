@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<!--suppress XmlDuplicatedId -->
 <html lang="zh-CN"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>添加博客</title>
+    <title>修改博客</title>
     <link rel="stylesheet" href="/security/static/layui/css/layui.css" media="all" />
     <script type="text/javascript" src="/security/static/layui/layui.js"></script>
     <script type="text/javascript" src="/security/static/js/imageUpload.js"></script>
@@ -22,14 +23,15 @@
 </head>
 <body>
 <div class="container">
-    <h1>添加博客</h1>
+    <h1>修改博客</h1>
     <hr/>
-    <form th:action="@{/addBlog}" method="post" role="form">
+    <form th:action="@{/uploadBlog}" method="post" role="form">
+        <input type="hidden" name="id" th:value="${blog.getId()}" />
         <div class="form-group">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
                 <legend>标题</legend>
             </fieldset>
-            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title:"/>
+            <input type="text" class="form-control" id="title" name="title" th:value="${blog.getTitle()}" />
         </div>
         <div class="form-group">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
@@ -41,18 +43,20 @@
         </div>
         <div class="form-group">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-            <legend>正文</legend>
-        </fieldset>
-            <textarea class="form-control" id="content" name="content" rows="3" placeholder="Please Input Content"></textarea>
+                <legend>正文</legend>
+            </fieldset>
+            <textarea class="form-control" id="content" name="content" rows="3" th:value="${blog.getContent()}" th:text="${blog.getContent()}"></textarea>
         </div>
         <div class="form-group">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
                 <legend>图片上传</legend>
             </fieldset>
-            <div class="layui-upload-drag">
+            <div class="layui-upload-drag" >
                 <input type="hidden" id="articleImgUrl" name="articleImgUrl" >
-                <div class="layui-upload-list">
-                    <img class="layui-upload-img"  id="uploadimg" src="http://xn--r8s0d654n.online:8080/images/d72aafe6-0229-4c5f-b49f-6d71c84c0a3e.png">
+                <!-- ${} 里面不能再嵌套 ${} 直接取值就好了 -->
+                <div class="layui-upload-list" th:switch="${#strings.isEmpty(blog.getArticleImgUrl())}">
+                    <img class="layui-upload-img"  id="uploadimg" th:case="true" src="http://xn--r8s0d654n.online:8080/images/d72aafe6-0229-4c5f-b49f-6d71c84c0a3e.png" >
+                    <img class="layui-upload-img"  id="uploadimg" th:case="false" th:src="${blog.getArticleImgUrl()}" >
                 </div>
             </div>
         </div>

@@ -50,8 +50,8 @@
                     <td th:text="${blog.getCreateTime()}"></td>
                     <td>
                         <a th:href="@{/blogDetail(id=${blog.getId()})}" type="button" class="btn btn-sm btn-success">详情</a>
-                        <a href="/admin/blogs/update/${blog.id}" type="button" class="btn btn-sm btn-warning">修改</a>
-                        <a href="/admin/blogs/delete/${blog.id}" type="button" class="btn btn-sm btn-danger">删除</a>
+                        <a th:href="@{/uploadBlogPage(id=${blog.getId()})}" type="button" class="btn btn-sm btn-warning">修改</a>
+                        <a th:href="@{/deleteBlog(id=${blog.getId()})}" type="button" class="btn btn-sm btn-danger">删除</a>
                     </td>
                 </tr>
         </table>

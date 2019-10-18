@@ -42,6 +42,7 @@ public class BlogService {
 
     public void deleteById(Integer id){
         blogDao.deleteById(id);
+        blogDao.flush();
     }
 
 
