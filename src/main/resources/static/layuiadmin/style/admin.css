@@ -442,7 +442,7 @@ html{background-color: #f2f2f2; color: #666;}
 
 
 /* 头部图标重置 */
-.layui-card-header.layuiadmin-card-header-auto{padding-top: 15px; padding-bottom: 0px; height: auto;}
+.layui-card-header.layuiadmin-card-header-auto{padding-top: 15px; padding-bottom: 15px; height: auto;}
 .layuiadmin-card-header-auto i.layuiadmin-button-btn{position: relative; right: 0; top: 0; vertical-align: middle;}
 .layuiadmin-card-header-auto .layui-form-item:last-child{margin-bottom: 0;}
 
@@ -519,7 +519,7 @@ html{background-color: #f2f2f2; color: #666;}
   .layui-body .layui-nav .layui-nav-item{display: block;}
   
   /* 主体容器 */
-  .layui-layout-admin .layui-body .layadmin-tabsbody-item{-webkit-overflow-scrolling: touch; overflow: auto;}
+  .layui-layout-admin .layui-body .layadmin-tabsbody-item{-webkit-overflow-scrolling: touch; overflow: auto;
 }
 
 

@@ -47,15 +47,7 @@ layui.define(['laytpl', 'layer', 'element', 'util'], function(exports){
     //主题配置
     ,theme: {
       //内置主题配色方案
-      color: [
-      {
-          main: '#43515e'
-          ,logo: '#0085E8'
-          ,selected: '#1E9FFF'
-          ,header: '#1E9FFF'
-          ,alias: 'ocean-header' //海洋头
-      },
-      {
+      color: [{
         main: '#20222A' //主题色
         ,selected: '#009688' //选中色
         ,alias: 'default' //默认别名

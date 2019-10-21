@@ -205,8 +205,7 @@ layui.define('view', function(exports){
         ,'.layui-nav-tree .layui-this>a,'
         ,'.layui-nav-tree .layui-nav-child dd.layui-this,'
         ,'.layui-nav-tree .layui-nav-child dd.layui-this a'
-        // ,'{background-color:{{d.color.selected}} !important;}'
-        ,'{background-color:#0995fa !important;}'
+        ,'{background-color:{{d.color.selected}} !important;}'
         
         //logo
         ,'.layui-layout-admin .layui-logo{background-color:{{d.color.logo || d.color.main}} !important;}'
